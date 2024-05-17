@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'models/post.dart';
+
+import 'utils/api_utils.dart';
+
 class MyHome extends StatefulWidget {
   const MyHome({super.key});
 
@@ -9,6 +13,13 @@ class MyHome extends StatefulWidget {
 
 class _MyHomeState extends State<MyHome> {
   int _counter = 0;
+  Future<Post>? _copypastaFuture;
+
+  void _fetchCopypasta() {
+    setState(() {
+      _copypastaFuture = getCopypasta(14);
+    });
+  }
 
   _increment() {
     setState(() {
@@ -24,7 +35,7 @@ class _MyHomeState extends State<MyHome> {
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.menu),
-          onPressed: () {},
+          onPressed: _fetchCopypasta,
         ),
       ),
       body: Center(
@@ -32,7 +43,30 @@ class _MyHomeState extends State<MyHome> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('Hello, World!'),
-            Text('$_counter'),
+            Text('Clicked $_counter times!'),
+            FutureBuilder<Post>(
+              future: _copypastaFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  return Column(
+                    children: <Widget>[
+                      Text('Post ID: ${snapshot.data!.postId}'),
+                      Text('Author: ${snapshot.data!.author}'),
+                      Text('Title: ${snapshot.data!.title}'),
+                      Text('Content: ${snapshot.data!.content}'),
+                      Text('Category: ${snapshot.data!.category}'),
+                      Text('Likes: ${snapshot.data!.likeCount}'),
+                    ],
+                  );
+                } else {
+                  return const Text('No data');
+                }
+              },
+            ),
           ],
         ),
       ),
