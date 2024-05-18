@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 import '../models/post.dart';
 
@@ -11,10 +12,12 @@ Future<Post> getCopypasta(int id) async {
     final List<dynamic> data = json.decode(response.body); // Decode as a list
     if (data.isNotEmpty) {
       final Map<String, dynamic> postJson = data[0]; // Get the first item
+      DateFormat formatter = DateFormat('dd MMM yyyy - HH:mm:ss');
+      String formattedTimestamp = formatter.format(DateTime.parse(postJson['Timestamp']));
       return Post(
         postId: postJson['Id'],
         author: postJson['Name'],
-        timestamp: postJson['Timestamp'],
+        timestamp: formattedTimestamp,
         title: postJson['Name'], // Assuming 'Name' is used as the title
         content: postJson['Content'],
         category: postJson['Category'],

@@ -70,7 +70,7 @@ class _MyBodyState extends ConsumerState<MyBody> {
                     Text('Author: ${post.author}'),
                     Text('Timestamp: ${post.timestamp}'),
                     Text('Title: ${post.title}'),
-                    Text('Content: ${post.content}'),
+                    SelectableText('Content: ${post.content}'),
                     Text('Category: ${post.category}'),
                     Text('Likes: ${post.likeCount}'),
                   ],
