@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/post.dart';
+
 import '../providers/providers.dart';
+
+import 'feed.dart';
 
 class MyBody extends ConsumerStatefulWidget {
   const MyBody({super.key});
@@ -57,30 +59,7 @@ class _MyBodyState extends ConsumerState<MyBody> {
             ),
           ],
         ),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text('Hello, World!'),
-              Text('Clicked $counter times!'),
-              copypastaAsync.when(
-                data: (Post post) => Column(
-                  children: <Widget>[
-                    Text('Post ID: ${post.postId}'),
-                    Text('Author: ${post.author}'),
-                    Text('Timestamp: ${post.timestamp}'),
-                    Text('Title: ${post.title}'),
-                    SelectableText('Content: ${post.content}'),
-                    Text('Category: ${post.category}'),
-                    Text('Likes: ${post.likeCount}'),
-                  ],
-                ),
-                loading: () => const CircularProgressIndicator(),
-                error: (error, stackTrace) => Text('Error: $error'),
-              ),
-            ],
-          ),
-        ),
+        const Feed(),
       ],
     );
   }

@@ -16,8 +16,14 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.getTextTheme('Roboto Flex'),
+        fontFamily: GoogleFonts.getFont('Roboto Flex').fontFamily,
+        brightness: Brightness.light,
       ),
+      darkTheme: ThemeData(
+        fontFamily: GoogleFonts.getFont('Roboto Flex').fontFamily,
+        brightness: Brightness.dark,
+      ),
+      themeMode: ThemeMode.system,
       title: 'Flutter Demo',
       home: const MyHome(),
     );

@@ -7,3 +7,5 @@ final counterProvider = StateProvider((ref) => 0);
 final copypastaProvider = FutureProvider.autoDispose<Post>((ref) async {
   return getCopypasta(1652);
 });
+
+const feedProvider = 'j';
