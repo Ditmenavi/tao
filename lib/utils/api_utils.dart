@@ -14,7 +14,7 @@ Future<Post> getCopypasta(int id) async {
       return Post(
         postId: postJson['Id'],
         author: postJson['Name'],
-        timestamp: DateTime.parse(postJson['Timestamp']),
+        timestamp: postJson['Timestamp'],
         title: postJson['Name'], // Assuming 'Name' is used as the title
         content: postJson['Content'],
         category: postJson['Category'],

@@ -1,7 +1,7 @@
 class Post {
   int postId;
   String author;
-  DateTime timestamp;
+  String timestamp;
   String title;
   String content;
   String category;

@@ -16,21 +16,6 @@ class _MyHomeState extends ConsumerState<MyHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Demo'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {
-            final result = ref.refresh(copypastaProvider.future); // Await the refresh
-            if (result is AsyncError) {
-              print("Error fetching copypasta");
-            } else {
-              print("Copypasta refreshed");
-            }
-          },
-        ),
-      ),
       body: const MyBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
