@@ -24,8 +24,6 @@ class _MyBodyState extends ConsumerState<MyBody> {
 
   @override
   Widget build(BuildContext context) {
-    final counter = ref.watch(counterProvider); // Access counter state directly
-    final copypastaAsync = ref.watch(copypastaProvider);
     return Row(
       children: [
         NavigationRail(
