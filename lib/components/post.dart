@@ -16,7 +16,8 @@ class _APostState extends ConsumerState<APost> {
   @override
   Widget build(BuildContext context) {
     final copypastaAsync = ref.watch(copypastaProvider);
-    return Container(
+    return SizedBox(
+      width: double.infinity,
       child: copypastaAsync.when(
         data: (Post post) => Card(
           child: Column(
@@ -43,7 +44,14 @@ class _APostState extends ConsumerState<APost> {
             ],
           ),
         ),
-        loading: () => const CircularProgressIndicator(),
+        loading: () => const Card(
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.all(32.0),
+              child: CircularProgressIndicator(),
+            ),
+          ),
+        ),
         error: (error, stackTrace) => Text('Error: $error'),
       ),
     );

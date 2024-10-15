@@ -16,7 +16,13 @@ class _FeedState extends State<Feed> {
       child: ListView.builder(
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
-          return const APost();
+          return Align(
+            alignment: Alignment.center,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: const APost(),
+            ),
+          );
         },
       ),
     );
