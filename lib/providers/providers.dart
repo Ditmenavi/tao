@@ -5,7 +5,7 @@ import '../utils/api_utils.dart';
 final counterProvider = StateProvider((ref) => 0);
 
 final copypastaProvider = FutureProvider.autoDispose<Post>((ref) async {
-  return getCopypasta(1652);
+  return getCopypasta(1578);
 });
 
 const feedProvider = 'j';

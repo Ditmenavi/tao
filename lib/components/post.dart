@@ -18,16 +18,30 @@ class _APostState extends ConsumerState<APost> {
     final copypastaAsync = ref.watch(copypastaProvider);
     return Container(
       child: copypastaAsync.when(
-        data: (Post post) => Column(
-          children: <Widget>[
-            Text('Post ID: ${post.postId}'),
-            Text('Author: ${post.author}'),
-            Text('Timestamp: ${post.timestamp}'),
-            Text('Title: ${post.title}'),
-            SelectableText('Content: ${post.content}'),
-            Text('Category: ${post.category}'),
-            Text('Likes: ${post.likeCount}'),
-          ],
+        data: (Post post) => Card(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const CircleAvatar(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Text(post.author),
+                        ),
+                      ],
+                    ),
+                    Text(post.timestamp),
+                  ],
+                ),
+              ),
+              Text(post.content),
+            ],
+          ),
         ),
         loading: () => const CircularProgressIndicator(),
         error: (error, stackTrace) => Text('Error: $error'),
