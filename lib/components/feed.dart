@@ -12,19 +12,17 @@ class Feed extends StatefulWidget {
 class _FeedState extends State<Feed> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (BuildContext context, int index) {
-          return Align(
-            alignment: Alignment.center,
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 600),
-              child: const APost(),
-            ),
-          );
-        },
-      ),
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (BuildContext context, int index) {
+        return Align(
+          alignment: Alignment.center,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 600),
+            child: const APost(),
+          ),
+        );
+      },
     );
   }
 }

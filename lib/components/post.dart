@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 import '../providers/providers.dart';
 
@@ -36,6 +37,7 @@ class _APostState extends ConsumerState<APost> {
         data: (Post post) => GestureDetector(
           onTap: () {
             print('Post ID: ${post.postId} clicked');
+            context.push('/post/${post.postId}');
           },
           child: Card(
             child: Column(
@@ -153,10 +155,6 @@ class _APostState extends ConsumerState<APost> {
                               );
                               setState(() {
                                 _copyButtonText = 'Copied';
-                              });
-                              await Future.delayed(const Duration(seconds: 3));
-                              setState(() {
-                                _copyButtonText = 'Copy';
                               });
                             },
                             style: TextButton.styleFrom(
