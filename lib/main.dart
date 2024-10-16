@@ -3,8 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wagashi/routes/router.dart';
 
-import 'screens/home.dart';
-
 void main() {
   runApp(const ProviderScope(child: MainApp()));
 }
