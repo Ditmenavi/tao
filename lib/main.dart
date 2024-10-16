@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wagashi/routes/router.dart';
 
-import 'home.dart';
+import 'screens/home.dart';
 
 void main() {
   runApp(const ProviderScope(child: MainApp()));
@@ -13,7 +14,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: GoogleFonts.getFont('Roboto Flex').fontFamily,
@@ -25,7 +26,7 @@ class MainApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.system,
       title: 'Flutter Demo',
-      home: const MyHome(),
+      routerConfig: router,
     );
   }
 }

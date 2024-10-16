@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'providers/providers.dart';
+import '../providers/providers.dart';
 
-import 'components/body.dart';
+import '../components/body.dart';
 
 class MyHome extends ConsumerStatefulWidget {
   const MyHome({super.key});
