@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'post.dart';
+import '../components/post.dart';
 
 class Feed extends StatefulWidget {
   const Feed({super.key});

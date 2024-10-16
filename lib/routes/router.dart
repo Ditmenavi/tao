@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'package:wagashi/components/feed.dart';
+import 'package:wagashi/screens/feed.dart';
 import 'package:wagashi/models/post.dart';
-import 'package:wagashi/screens/home.dart';
+import 'package:wagashi/home.dart';
 import 'package:wagashi/screens/post_content.dart';
 
 final GoRouter router = GoRouter(

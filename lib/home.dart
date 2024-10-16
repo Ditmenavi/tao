@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../providers/providers.dart';
+import 'providers/providers.dart';
 
 class MyHome extends ConsumerStatefulWidget {
   const MyHome({super.key, required this.shell});
