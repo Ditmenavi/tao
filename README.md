@@ -1,3 +1,3 @@
-# wagashi
+**Project Wagashi**
 
-A new Flutter project.
+Literally nothing to see here, get lost.
