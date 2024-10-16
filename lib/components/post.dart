@@ -37,7 +37,7 @@ class _APostState extends ConsumerState<APost> {
         data: (Post post) => GestureDetector(
           onTap: () {
             print('Post ID: ${post.postId} clicked');
-            context.push('/post/${post.postId}');
+            context.push('/post/${post.postId}', extra: post);
           },
           child: Card(
             child: Column(

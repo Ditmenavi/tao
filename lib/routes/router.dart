@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:wagashi/components/feed.dart';
+import 'package:wagashi/models/post.dart';
 import 'package:wagashi/screens/home.dart';
 import 'package:wagashi/screens/post_content.dart';
 
@@ -24,9 +25,12 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: '/post/:Id',
               name: 'post',
-              builder: (context, state) => PostContent(
-                id: state.pathParameters['Id']!,
-              ),
+              builder: (context, state) {
+                final post = state.extra as Post;
+                return PostContent(
+                  post: post,
+                );
+              },
             ),
           ],
         ),

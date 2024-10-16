@@ -1,10 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wagashi/models/post.dart';
 
 class PostContent extends ConsumerStatefulWidget {
-  final String id;
-  const PostContent({super.key, required this.id});
+  final Post post;
+  const PostContent({super.key, required this.post});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _PostContentState();
@@ -14,8 +15,18 @@ class _PostContentState extends ConsumerState<PostContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Post ${widget.post.postId}'),
+      ),
       body: Center(
-        child: TextButton(onPressed: () => context.pop(), child: Text('Post ${widget.id}')),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Post ID: ${widget.post.postId}'),
+            Text('Post Title: ${widget.post.title}'),
+            Text('Post Content: ${widget.post.content}'),
+          ],
+        ),
       ),
     );
   }
