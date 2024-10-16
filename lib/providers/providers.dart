@@ -9,3 +9,5 @@ final copypastaProvider = FutureProvider.autoDispose<Post>((ref) async {
 });
 
 const feedProvider = 'j';
+
+final votingProvider = StateProvider((ref) => <String>{});

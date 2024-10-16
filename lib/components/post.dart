@@ -18,21 +18,25 @@ class APost extends ConsumerStatefulWidget {
 class _APostState extends ConsumerState<APost> {
   final String _copyButtonText = 'Copy';
   Set<String> selected = {''};
-  void updateVoting(Set<String> newSelection) {
-    setState(() {
-      selected = newSelection;
-    });
-    //Todo: Implement voting logic
-    if (selected.isEmpty) {
-      print('No vote');
-    } else {
-      print(selected);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
+    var votingAsync = ref.watch(votingProvider);
     final copypastaAsync = ref.watch(copypastaProvider);
+
+    void updateVoting(Set<String> newSelection) {
+      setState(() {
+        selected = newSelection;
+        ref.read(votingProvider.notifier).update((state) => newSelection);
+      });
+      //Todo: Implement voting logic
+      if (selected.isEmpty) {
+        print('No vote');
+      } else {
+        print(selected);
+      }
+    }
+
     return SizedBox(
       width: double.infinity,
       child: copypastaAsync.when(
@@ -131,7 +135,7 @@ class _APostState extends ConsumerState<APost> {
                             icon: Icon(Icons.keyboard_double_arrow_down),
                           ),
                         ],
-                        selected: selected,
+                        selected: votingAsync,
                         onSelectionChanged: updateVoting,
                         showSelectedIcon: false,
                         emptySelectionAllowed: true,
