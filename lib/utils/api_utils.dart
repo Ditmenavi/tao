@@ -30,3 +30,18 @@ Future<Post> getCopypasta(int id) async {
     throw Exception('Request failed with status: ${response.statusCode}');
   }
 }
+
+//TODO: Implement the getCopypastas function
+Future<List<Post>> getCopypastas() async {
+  return [
+    Post(
+      postId: 1,
+      author: 'boiletplate',
+      timestamp: '2022-01-01',
+      title: 'title boiletplate',
+      content: 'content boiletplate',
+      category: 'category boiletplate',
+      likeCount: 0,
+    )
+  ];
+}

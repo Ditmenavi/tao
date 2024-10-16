@@ -15,6 +15,7 @@ final GoRouter router = GoRouter(
       ) =>
           MyHome(shell: shell),
       branches: [
+        //TODO: Add branches for other navigation rail items
         StatefulShellBranch(
           routes: [
             GoRoute(

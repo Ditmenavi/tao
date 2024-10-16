@@ -29,7 +29,7 @@ class _APostState extends ConsumerState<APost> {
         selected = newSelection;
         ref.read(votingProvider.notifier).update((state) => newSelection);
       });
-      //Todo: Implement voting logic
+      //TODO: Implement voting logic
       if (selected.isEmpty) {
         print('No vote');
       } else {

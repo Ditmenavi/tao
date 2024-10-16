@@ -9,6 +9,8 @@ class Feed extends StatefulWidget {
   State<Feed> createState() => _FeedState();
 }
 
+//TODO: Crreate feed pagination or infinite scrolling
+
 class _FeedState extends State<Feed> {
   @override
   Widget build(BuildContext context) {
