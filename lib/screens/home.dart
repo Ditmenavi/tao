@@ -54,7 +54,7 @@ class _MyHomeState extends ConsumerState<MyHome> {
               ),
               NavigationRailDestination(
                 icon: Icon(Icons.bookmark),
-                label: Text('Favorites'),
+                label: Text('Saved'),
               ),
             ],
           ),

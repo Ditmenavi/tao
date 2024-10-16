@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
@@ -15,12 +16,13 @@ class APost extends ConsumerStatefulWidget {
 }
 
 class _APostState extends ConsumerState<APost> {
-  String _copyButtonText = 'Copy';
+  final String _copyButtonText = 'Copy';
   Set<String> selected = {''};
   void updateVoting(Set<String> newSelection) {
     setState(() {
       selected = newSelection;
     });
+    //Todo: Implement voting logic
     if (selected.isEmpty) {
       print('No vote');
     } else {
@@ -36,7 +38,6 @@ class _APostState extends ConsumerState<APost> {
       child: copypastaAsync.when(
         data: (Post post) => GestureDetector(
           onTap: () {
-            print('Post ID: ${post.postId} clicked');
             context.push('/post/${post.postId}', extra: post);
           },
           child: Card(
@@ -73,7 +74,7 @@ class _APostState extends ConsumerState<APost> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.share_rounded),
+                                    Icon(Icons.share),
                                     SizedBox(width: 8),
                                     Text('Share'),
                                   ],
@@ -122,12 +123,12 @@ class _APostState extends ConsumerState<APost> {
                           ButtonSegment<String>(
                             value: '+1',
                             label: Text('0'),
-                            icon: Icon(Icons.keyboard_double_arrow_up_rounded),
+                            icon: Icon(Icons.keyboard_double_arrow_up),
                           ),
                           ButtonSegment<String>(
                             value: '-1',
                             label: Text('0'),
-                            icon: Icon(Icons.keyboard_double_arrow_down_rounded),
+                            icon: Icon(Icons.keyboard_double_arrow_down),
                           ),
                         ],
                         selected: selected,
@@ -135,42 +136,42 @@ class _APostState extends ConsumerState<APost> {
                         showSelectedIcon: false,
                         emptySelectionAllowed: true,
                       ),
-                      Row(
+                      Wrap(
                         children: [
                           TextButton.icon(
                             onPressed: () async {
                               await Clipboard.setData(ClipboardData(text: post.content));
-                              // ignore: use_build_context_synchronously
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  duration: Duration(seconds: 3),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                                  ),
-                                  content: Text(
-                                    'Copied to clipboard',
-                                    textAlign: TextAlign.center,
-                                  ),
+                              var snackbar = SnackBar(
+                                elevation: 0,
+                                backgroundColor: Colors.transparent,
+                                duration: const Duration(seconds: 3),
+                                content: AwesomeSnackbarContent(
+                                  // ignore: use_build_context_synchronously
+                                  color: Theme.of(context).colorScheme.onSecondary,
+                                  title: 'Copied to clipboard',
+                                  message: 'Ctrl + V to win your argument',
+                                  contentType: ContentType.success,
                                 ),
                               );
-                              setState(() {
-                                _copyButtonText = 'Copied';
-                              });
+                              // ignore: use_build_context_synchronously
+                              ScaffoldMessenger.of(context)
+                                ..hideCurrentSnackBar()
+                                ..showSnackBar(snackbar);
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Theme.of(context).colorScheme.secondary,
                             ),
                             label: Text(_copyButtonText),
-                            icon: const Icon(Icons.copy_rounded),
+                            icon: const Icon(Icons.copy),
                           ),
                           const SizedBox(width: 8),
                           TextButton.icon(
-                            onPressed: () {},
+                            onPressed: null,
                             style: TextButton.styleFrom(
                               foregroundColor: Theme.of(context).colorScheme.secondary,
                             ),
                             label: const Text('Bookmark'),
-                            icon: const Icon(Icons.bookmark_border_rounded),
+                            icon: const Icon(Icons.bookmark_border),
                           ),
                         ],
                       )
