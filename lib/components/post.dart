@@ -52,41 +52,53 @@ class _APostState extends ConsumerState<APost> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                          radius: 25,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    // Outer Row: Constrain this using Expanded
+                    Expanded(
+                      child: Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 25,
+                          ),
+                          const SizedBox(width: 12), // Spacing between avatar and text
+                          Expanded(
+                            // Inner Row: Constrain it so the inner Column can fit properly
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.post.author,
+                                  overflow: TextOverflow.fade, // Prevent overflow
+                                  softWrap: false,
+                                  maxLines: 1,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(
+                                  widget.post.timestamp,
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    PopupMenuButton(
+                      itemBuilder: (BuildContext context) => [
+                        const PopupMenuItem(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(widget.post.author),
-                              Text(widget.post.timestamp),
+                              Icon(Icons.share),
+                              SizedBox(width: 8),
+                              Text('Share'),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        PopupMenuButton(
-                          itemBuilder: (BuildContext context) => [
-                            const PopupMenuItem(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.share),
-                                  SizedBox(width: 8),
-                                  Text('Share'),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
                   ],
                 ),
               ),

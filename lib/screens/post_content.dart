@@ -70,13 +70,26 @@ class _PostContentState extends ConsumerState<PostContent> {
                       const CircleAvatar(
                         radius: 25,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      const SizedBox(width: 12), // Added space between avatar and text
+                      Expanded(
+                        // Added Expanded to prevent overflow
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(widget.post.author),
-                            Text(widget.post.timestamp),
+                            Text(
+                              widget.post.author,
+                              overflow: TextOverflow.fade, // Prevent overflow
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Text(
+                              widget.post.timestamp,
+                              style: const TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -151,14 +164,16 @@ class _PostContentState extends ConsumerState<PostContent> {
                                     color: Theme.of(context).colorScheme.onSecondary,
                                     title: 'Đã copy nội dung',
                                     titleTextStyle: TextStyle(
-                                        // ignore: use_build_context_synchronously
-                                        fontSize: 20,
-                                        color: Theme.of(context).colorScheme.onSecondaryContainer),
+                                      // ignore: use_build_context_synchronously
+                                      fontSize: 20,
+                                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                    ),
                                     message: 'Ctrl + V để vả vỡ mồm đối phương',
                                     messageTextStyle: TextStyle(
-                                        // ignore: use_build_context_synchronously
-                                        fontSize: 14,
-                                        color: Theme.of(context).colorScheme.onSecondaryContainer),
+                                      // ignore: use_build_context_synchronously
+                                      fontSize: 14,
+                                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                    ),
                                     contentType: ContentType.success,
                                   ),
                                 );
