@@ -8,6 +8,10 @@ final copypastaProvider = FutureProvider.autoDispose<Post>((ref) async {
   return getCopypasta(1578);
 });
 
-const feedProvider = 'j';
+var feedProvider = FutureProvider.autoDispose<List<Post>>((ref) async {
+  return getCopypastas(1);
+});
 
-final votingProvider = StateProvider((ref) => <String>{});
+final votingProvider = StateProvider.family<Set<String>, String>((ref, postId) {
+  return {};
+});
