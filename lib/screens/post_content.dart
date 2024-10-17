@@ -37,16 +37,27 @@ class _PostContentState extends ConsumerState<PostContent> {
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.post.title} (${widget.post.postId})'),
+        scrolledUnderElevation: 0,
         actions: [
           PopupMenuButton(
             itemBuilder: (BuildContext context) => [
               const PopupMenuItem(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(Icons.share),
-                    SizedBox(width: 8),
+                    SizedBox(width: 12),
                     Text('Share'),
+                  ],
+                ),
+              ),
+              const PopupMenuItem(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(Icons.bookmark_add),
+                    SizedBox(width: 12),
+                    Text('Save copypasta'),
                   ],
                 ),
               ),
@@ -186,16 +197,10 @@ class _PostContentState extends ConsumerState<PostContent> {
                                 foregroundColor: Theme.of(context).colorScheme.secondary,
                               ),
                               label: Text(_copyButtonText),
-                              icon: const Icon(Icons.copy),
-                            ),
-                            const SizedBox(width: 8),
-                            TextButton.icon(
-                              onPressed: null,
-                              style: TextButton.styleFrom(
-                                foregroundColor: Theme.of(context).colorScheme.secondary,
+                              icon: const Icon(
+                                Icons.copy,
+                                size: 20,
                               ),
-                              label: const Text('Bookmark'),
-                              icon: const Icon(Icons.bookmark_border),
                             ),
                           ],
                         )
