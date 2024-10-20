@@ -58,6 +58,7 @@ class _MyHomeState extends ConsumerState<MyHome> {
               ),
             ],
           ),
+          const VerticalDivider(thickness: 0.5, width: 1),
           Expanded(child: widget.shell),
         ],
       ),

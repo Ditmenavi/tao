@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wagashi/routes/router.dart';
+import 'package:wagashi/utils/custom_scroll_behavior.dart';
 
 void main() {
   runApp(const ProviderScope(child: MainApp()));
@@ -13,6 +14,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: GoogleFonts.getFont('Roboto Flex').fontFamily,

@@ -76,39 +76,43 @@ class _PostContentState extends ConsumerState<PostContent> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      const CircleAvatar(
-                        radius: 25,
-                      ),
-                      const SizedBox(width: 12), // Added space between avatar and text
-                      Expanded(
-                        // Added Expanded to prevent overflow
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.post.author,
-                              overflow: TextOverflow.fade, // Prevent overflow
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            Text(
-                              widget.post.timestamp,
-                              style: const TextStyle(
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: Row(
+                      children: [
+                        const CircleAvatar(
+                          radius: 25,
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 12), // Added space between avatar and text
+                        Expanded(
+                          // Added Expanded to prevent overflow
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.post.author,
+                                overflow: TextOverflow.fade, // Prevent overflow
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                widget.post.timestamp,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 8),
                   const Divider(
                     thickness: 0.5,
+                    height: 1,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -138,6 +142,7 @@ class _PostContentState extends ConsumerState<PostContent> {
                   ),
                   const Divider(
                     thickness: 0.5,
+                    height: 1,
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(24, 8, 12, 12),
@@ -175,14 +180,14 @@ class _PostContentState extends ConsumerState<PostContent> {
                                     color: Theme.of(context).colorScheme.onSecondary,
                                     title: 'Đã copy nội dung',
                                     titleTextStyle: TextStyle(
-                                      // ignore: use_build_context_synchronously
                                       fontSize: 20,
+                                      // ignore: use_build_context_synchronously
                                       color: Theme.of(context).colorScheme.onSecondaryContainer,
                                     ),
                                     message: 'Ctrl + V để vả vỡ mồm đối phương',
                                     messageTextStyle: TextStyle(
-                                      // ignore: use_build_context_synchronously
                                       fontSize: 14,
+                                      // ignore: use_build_context_synchronously
                                       color: Theme.of(context).colorScheme.onSecondaryContainer,
                                     ),
                                     contentType: ContentType.success,
